@@ -3,10 +3,17 @@ import './App.css';
 import AddToDo from './components/AddToDo';
 import SearchToDo from './components/SearchToDo';
 import ViewToDo from './components/ViewToDo';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <ViewToDo/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AddToDo/>}/>
+        <Route path="/search" element={<SearchToDo/>}/>
+        <Route path="/view" element={<ViewToDo/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

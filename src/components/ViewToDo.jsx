@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import NavBar from './NavBar'
 
 const ViewToDo = () => {
-    let result;
     const [data, fetchData] = useState([])
     const fetchDataFromAPI = () => {
         axios.get("https://jsonplaceholder.typicode.com/todos").then(
@@ -14,6 +14,7 @@ const ViewToDo = () => {
     useEffect(() => { fetchDataFromAPI() }, [])
     return (
         <div>
+            <NavBar/>
             <div className="container">
                 <div className="row">
                     <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -30,16 +31,11 @@ const ViewToDo = () => {
                                 {
                                     data.map(
                                         (value, index) => {
-                                            if (value.completed==true){
-                                                result="true";
-                                            }else{
-                                                result="false";
-                                            }
                                             return <tr>
                                                 <th scope="row">{value.userId}</th>
                                                 <td>{value.id}</td>
                                                 <td>{value.title}</td>
-                                                <td>{result}</td>
+                                                <td>{value.completed}</td>
                                             </tr>
                                         }
                                     )
